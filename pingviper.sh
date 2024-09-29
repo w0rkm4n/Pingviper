@@ -177,6 +177,8 @@ scanner() {
     else
         nmap -iL "$ip_file" -sC -sV -Pn -n -oA "$FULL_SCAN_FILE" > /dev/null 2>&1
     fi
+    
+    echo -e "${GREEN}[+]${NC} Scan completed. All results saved."
 }
 
 # Main logic to call the appropriate function
@@ -207,8 +209,6 @@ fi
 # File names
 SUBNET_FILENAME=$(echo "$SUBNET" | tr '.' '_')
 IP_FILE="${SUBNET_FILENAME}-ip_addresses.txt"
-
-
 
 # Calculate IP range
 read start_ip_dec end_ip_dec <<< $(calculate_range "$SUBNET" "$SUBNET_MASK")
